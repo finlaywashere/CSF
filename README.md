@@ -1,0 +1,1 @@
+# The Cool Certificate Format
