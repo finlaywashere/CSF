@@ -4,7 +4,7 @@
 
 All v1.0 CSF certificate files must start with `---csf-cert-1---`.
 
-Then in no particular order the certificate must contain a public key and may contain optional certificate flags and other certificate data.
+Then in this order the certificate must contain a public key and may contain optional certificate flags and other certificate data.
 
 Public keys must be in the format `pub:(algorithm):(number of lines encoded key occupies):(base64 encoded public key)`.
 
@@ -15,6 +15,8 @@ Other certificate data (if included) must be in the format `(name):(data)`.
 Then in the order specified in this specification the certificate must contain its signed hash, and the public key of the signer.
 
 The signed hash must be in the format `hash:(hashing algorithm):(number of lines signature occupies):(base64 encoded signature)`.
+
+The plaintext hash must be the hash of the certificate up to this point including the CSF certificate declaration.
 
 The signer's public key must be in the format `signer:(algorithm):(number of lines encoded key occupies):(base64 encoded public key)`.
 
