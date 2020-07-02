@@ -49,7 +49,7 @@ public class Key {
 		
 		PrintWriter out = new PrintWriter(new FileWriter(f,true));
 		
-		out.println("---csf-key-1---");
+		out.println("---csf-enc-key-1---");
 		String key = BASE64.encode(pub.getEncoded());
 		out.println("pub:"+pub.getAlgorithm()+":"+(count(key,"\n")+1));
 		key = BASE64.encode(Symmetric.encryptB(priv.getEncoded(),encKey,encKey.getAlgorithm()));
@@ -102,6 +102,10 @@ public class Key {
 			}
 		}
 		in.close();
+		if(pub == null)
+			throw new Exception("Public key cannot be null!");
+		if(priv == null)
+			throw new Exception("Private key cannot be null!");
 		return new Key(pub,priv);
 	}
 	public static Key readKey(File f, SecretKey encKey) throws Exception{
@@ -146,6 +150,10 @@ public class Key {
 			}
 		}
 		in.close();
+		if(pub == null)
+			throw new Exception("Public key cannot be null!");
+		if(priv == null)
+			throw new Exception("Private key cannot be null!");
 		return new Key(pub,priv);
 	}
 }
