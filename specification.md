@@ -1,8 +1,8 @@
-# CSM v1.0 specification
+# CSF v1.0 specification
 
 ## 1.0 Certificate File Contents
 
-All v1.0 CSM certificate files must start with `---csm-cert-1---`.
+All v1.0 CSF certificate files must start with `---csf-cert-1---`.
 
 Then in no particular order the certificate must contain a public key and may contain optional certificate flags and other certificate data.
 
@@ -20,7 +20,7 @@ The signer's public key must be in the format `signer:(algorithm):(number of lin
 
 If the certificate does not have a signer (CA, etc...), then it must be signed by the private key associated with its public key.
 
-The certificate must end with `--end-csm-cert---`.
+The certificate must end with `--end-csf-cert---`.
 
 ### 1.1 Certificate File Flags
 
@@ -31,9 +31,13 @@ All flags listed in this section must be supported (or ignored if they do not ap
 Unless otherwise overridden these flags are implied, their definitions are explained in #1.1.2.
 
 `NoCA`
+
 `Sign`
+
 `Encrypt`
+
 `Auth`
+
 `NoVerified`
 
 #### 1.1.2 Certificate File Flags
@@ -62,23 +66,23 @@ Note: Some software may require certain extra data in certificates for different
 
 ## 2.0 Certificate Chain File Contents
 
-All v1.0 CSM certificate chains must start with `---csm-cert-chain---`.
+All v1.0 CSF certificate chains must start with `---csf-cert-chain---`.
 
 The certificate chain file must then contain all of the certificates exactly as specified in #1.0 in the order that they are signed in (ex: first certificate is the certificate at the end of the chain, then its signer, then its signer, etc...).
 
-The certificate chain file must end with `---end-csm-cert-chain---`.
+The certificate chain file must end with `---end-csf-cert-chain---`.
 
 ## 3.0 Key File Contents
 
-All v1.0 CSM key files must start with `---csm-key-1---` or `---csm-enc-key-1---`.
+All v1.0 CSF key files must start with `---csf-key-1---` or `---csf-enc-key-1---`.
 
-`---csm-key-1---` is for plaintext keys, and `---csm-enc-key-1---` is for encrypted keys.
+`---csf-key-1---` is for plaintext keys, and `---csf-enc-key-1---` is for encrypted keys.
 
-All keys must end with `---end-csm-key---` after it's contents.
+All keys must end with `---end-csf-key---` after it's contents.
 
 ### 3.1 Plaintext Key File Contents
 
-All v1.0 plaintext CSM key files must contain a public key and a private key in any order.
+All v1.0 plaintext CSF key files must contain a public key and a private key in any order.
 
 The public key must be in the format `pub:(algorithm):(number of lines encoded key occupies):(base64 encoded public key)`.
 
@@ -86,7 +90,7 @@ The private key must be in the format `priv:(algorithm):(number of lines encoded
 
 ### 3.2 Encrypted Key File Contents
 
-All v1.0 encrypted CSM key files must contain a public key and a encrypted private key in any order.
+All v1.0 encrypted CSF key files must contain a public key and a encrypted private key in any order.
 
 The public key must be in the format `pub:(algorithm):(number of lines encoded key occupies):(base64 encoded public key)`.
 
