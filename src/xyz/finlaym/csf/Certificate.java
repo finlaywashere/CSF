@@ -118,7 +118,7 @@ public class Certificate {
 			String[] parse = s.split(":",2);
 			switch(parse[0]) {
 			case "pub":
-				String[] split = parse[1].split(":");
+				String[] split = parse[1].split(":",3);
 				String algo = split[0];
 				int numLines = Integer.valueOf(split[1]);
 				String key = split[2];
@@ -138,7 +138,7 @@ public class Certificate {
 				}
 				break;
 			case "signer":
-				split = parse[1].split(":");
+				split = parse[1].split(":",3);
 				algo = split[0];
 				numLines = Integer.valueOf(split[1]);
 				key = split[2];
