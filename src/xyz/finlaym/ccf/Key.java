@@ -1,4 +1,4 @@
-package xyz.finlaym.csf;
+package xyz.finlaym.ccf;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -34,12 +34,12 @@ public class Key {
 		
 		PrintWriter out = new PrintWriter(new FileWriter(f,true));
 		
-		out.println("---csf-key-1---");
+		out.println("----key-1---");
 		String key = BASE64.encode(pub.getEncoded());
 		out.println("pub:"+pub.getAlgorithm()+":"+(count(key,"\n")+1));
 		key = BASE64.encode(priv.getEncoded());
 		out.println("priv:"+priv.getAlgorithm()+":"+(count(key,"\n")+1));
-		out.println("---end-csf-key---");
+		out.println("---end--key---");
 		
 		out.close();
 	}
@@ -49,12 +49,12 @@ public class Key {
 		
 		PrintWriter out = new PrintWriter(new FileWriter(f,true));
 		
-		out.println("---csf-enc-key-1---");
+		out.println("----enc-key-1---");
 		String key = BASE64.encode(pub.getEncoded());
 		out.println("pub:"+pub.getAlgorithm()+":"+(count(key,"\n")+1));
 		key = BASE64.encode(Symmetric.encryptB(priv.getEncoded(),encKey,encKey.getAlgorithm()));
 		out.println("priv:"+encKey.getAlgorithm()+":"+priv.getAlgorithm()+":"+(count(key,"\n")+1));
-		out.println("---end-csf-key---");
+		out.println("---end--key---");
 		
 		out.close();
 	}
@@ -69,13 +69,13 @@ public class Key {
 		PrivateKey priv = null;
 		while(in.hasNextLine()) {
 			String s = in.nextLine();
-			if(!start && !s.equals("---csf-key-1---"))
+			if(!start && !s.equals("----key-1---"))
 				continue;
-			if(!start && s.equals("---csf-key-1---")) {
+			if(!start && s.equals("----key-1---")) {
 				start = true;
 				continue;
 			}
-			if(s.equals("---end-csf-key---"))
+			if(s.equals("---end--key---"))
 				break;
 			String[] parse = s.split(":",2);
 			switch(parse[0]) {
@@ -115,13 +115,13 @@ public class Key {
 		PrivateKey priv = null;
 		while(in.hasNextLine()) {
 			String s = in.nextLine();
-			if(!start && !s.equals("---csf-enc-key-1---"))
+			if(!start && !s.equals("----enc-key-1---"))
 				continue;
-			if(!start && s.equals("---csf-enc-key-1---")) {
+			if(!start && s.equals("----enc-key-1---")) {
 				start = true;
 				continue;
 			}
-			if(s.equals("---end-csf-key---"))
+			if(s.equals("---end--key---"))
 				break;
 			String[] parse = s.split(":",2);
 			switch(parse[0]) {

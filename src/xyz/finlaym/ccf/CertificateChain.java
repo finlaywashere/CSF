@@ -1,4 +1,4 @@
-package xyz.finlaym.csf;
+package xyz.finlaym.ccf;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -22,13 +22,13 @@ public class CertificateChain {
 		f.createNewFile();
 		
 		PrintWriter out = new PrintWriter(new FileWriter(f,true));
-		out.println("---csf-cert-chain---");
+		out.println("----cert-chain---");
 		out.close();
 		for(Certificate c : certificates) {
 			c.writeToFile(f, true);
 		}
 		out = new PrintWriter(new FileWriter(f,true));
-		out.println("---end-csf-cert-chain---");
+		out.println("---end--cert-chain---");
 		out.close();
 	}
 
@@ -38,21 +38,21 @@ public class CertificateChain {
 		List<Certificate> certificates = new ArrayList<Certificate>();
 		while(in.hasNextLine()) {
 			String s = in.nextLine();
-			if(!start && !s.equals("---csf-cert-chain---"))
+			if(!start && !s.equals("----cert-chain---"))
 				continue;
-			if(!start && s.equals("---csf-cert-chain---")) {
+			if(!start && s.equals("----cert-chain---")) {
 				start = true;
 				continue;
 			}
-			if(s.equals("---end-csf-cert-chain---"))
+			if(s.equals("---end--cert-chain---"))
 				break;
-			if(s.equals("---csf-cert-1---")) {
+			if(s.equals("----cert-1---")) {
 				List<String> cert = new ArrayList<String>();
 				cert.add(s);
 				while(in.hasNextLine()) {
 					s = in.nextLine();
 					cert.add(s);
-					if(s.equals("---end-csf-cert---"))
+					if(s.equals("---end--cert---"))
 						break;
 				}
 				certificates.add(Certificate.readCertificate(cert));

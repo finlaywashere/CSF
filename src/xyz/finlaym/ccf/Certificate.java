@@ -1,4 +1,4 @@
-package xyz.finlaym.csf;
+package xyz.finlaym.ccf;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -30,7 +30,7 @@ public class Certificate {
 	}
 
 	public boolean verify() throws Exception {
-		String cert = "---csf-cert-1---\n";
+		String cert = "---ccf-cert-1---\n";
 		String key = BASE64.encode(pub.getEncoded());
 		cert += "pub:" + pub.getAlgorithm() + ":" + (count(key, "\n") + 1) + "\n";
 		if (flags.length != 0)
@@ -80,7 +80,7 @@ public class Certificate {
 
 		PrintWriter out = new PrintWriter(new FileWriter(f, true));
 
-		out.println("---csf-cert-1---");
+		out.println("---ccf-cert-1---");
 		String key = BASE64.encode(pub.getEncoded());
 		out.println("pub:" + pub.getAlgorithm() + ":" + (count(key, "\n") + 1));
 		if (flags.length != 0)
@@ -91,6 +91,7 @@ public class Certificate {
 		out.println("hash:" + hash);
 		key = BASE64.encode(signer.getEncoded());
 		out.println("signer:" + signer.getAlgorithm() + ":" + (count(key, "\n") + 1));
+		out.println("---end-ccf-cert---");
 
 		out.close();
 	}
@@ -118,13 +119,13 @@ public class Certificate {
 		boolean start = false;
 		for (int i = 0; i < lines.size(); i++) {
 			String s = lines.get(i);
-			if (!start && !s.equals("---csf-cert-1---"))
+			if (!start && !s.equals("---ccf-cert-1---"))
 				continue;
-			if (!start && s.equals("---csf-cert-1---")) {
+			if (!start && s.equals("---ccf-cert-1---")) {
 				start = true;
 				continue;
 			}
-			if (s.equals("---end-csf-cert---"))
+			if (s.equals("---end-ccf-cert---"))
 				break;
 			String[] parse = s.split(":", 2);
 			switch (parse[0]) {

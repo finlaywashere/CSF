@@ -23,10 +23,10 @@ sourceSets {
 }
 
 shadowJar {
-    baseName = "CSF"
+    baseName = "CCF"
 }
 jar {
-    baseName = "CSF"
+    baseName = "CCF"
     classifier = 'all'
     from { (configurations.runtime).collect { it.isDirectory() ? it : zipTree(it) } } {
         exclude 'META-INF/*.RSA', 'META-INF/*.SF', 'META-INF/*.DSA'

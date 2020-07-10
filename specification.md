@@ -1,8 +1,8 @@
-# CSF v1.0 specification
+# CCF v1.0 specification
 
 ## 1.0 Certificate File Contents
 
-All v1.0 CSF certificate files must start with `---csf-cert-1---`.
+All v1.0 CCF certificate files must start with `---ccf-cert-1---`.
 
 Then in this order the certificate must contain a public key and may contain optional certificate flags and other certificate data.
 
@@ -16,13 +16,13 @@ Then in the order specified in this specification the certificate must contain i
 
 The signed hash must be in the format `hash:(hashing algorithm):(number of lines signature occupies):(base64 encoded signature)`.
 
-The plaintext hash must be the hash of the certificate up to this point including the CSF certificate declaration.
+The plaintext hash must be the hash of the certificate up to this point including the CCF certificate declaration.
 
 The signer's public key must be in the format `signer:(algorithm):(number of lines encoded key occupies):(base64 encoded public key)`.
 
 If the certificate does not have a signer (CA, etc...), then it must be signed by the private key associated with its public key.
 
-The certificate must end with `--end-csf-cert---`.
+The certificate must end with `--end-ccf-cert---`.
 
 ### 1.1 Certificate File Flags
 
@@ -68,23 +68,23 @@ Note: Some software may require certain extra data in certificates for different
 
 ## 2.0 Certificate Chain File Contents
 
-All v1.0 CSF certificate chains must start with `---csf-cert-chain---`.
+All v1.0 CCF certificate chains must start with `---ccf-cert-chain---`.
 
 The certificate chain file must then contain all of the certificates exactly as specified in #1.0 in the order that they are signed in (ex: first certificate is the certificate at the end of the chain, then its signer, then its signer, etc...).
 
-The certificate chain file must end with `---end-csf-cert-chain---`.
+The certificate chain file must end with `---end-ccf-cert-chain---`.
 
 ## 3.0 Key File Contents
 
-All v1.0 CSF key files must start with `---csf-key-1---` or `---csf-enc-key-1---`.
+All v1.0 CCF key files must start with `---ccf-key-1---` or `---ccf-enc-key-1---`.
 
-`---csf-key-1---` is for plaintext keys, and `---csf-enc-key-1---` is for encrypted keys.
+`---ccf-key-1---` is for plaintext keys, and `---ccf-enc-key-1---` is for encrypted keys.
 
-All keys must end with `---end-csf-key---` after it's contents.
+All keys must end with `---end-ccf-key---` after it's contents.
 
 ### 3.1 Plaintext Key File Contents
 
-All v1.0 plaintext CSF key files must contain a public key and a private key in any order.
+All v1.0 plaintext CCF key files must contain a public key and a private key in any order.
 
 The public key must be in the format `pub:(algorithm):(number of lines encoded key occupies):(base64 encoded public key)`.
 
@@ -92,7 +92,7 @@ The private key must be in the format `priv:(algorithm):(number of lines encoded
 
 ### 3.2 Encrypted Key File Contents
 
-All v1.0 encrypted CSF key files must contain a public key and a encrypted private key in any order.
+All v1.0 encrypted CCF key files must contain a public key and a encrypted private key in any order.
 
 The public key must be in the format `pub:(algorithm):(number of lines encoded key occupies):(base64 encoded public key)`.
 
